@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { Switch, Route, useHistory } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import './misc/router-animations.css'
 import backly from './services/backly/backly'
 import Auth from './components/Auth/Auth'
 import Home from './components/Home/Home'
@@ -29,22 +31,37 @@ const App = () => {
   }, [])
 
   return (
-    <div className="p-6 container ">
-      <Switch>
-        <Route path={buildRoute(['auth'])}>
-          <Auth />
-        </Route>
-        <Route path={buildRoute(['barcode'])}>
-          <Barcode />
-        </Route>
-        <Route path={buildRoute(['stats'])}>
-          <Achievements />
-        </Route>
-        <Route path={buildRoute([])}>
-          <Home />
-        </Route>
-      </Switch>
-    </div>
+    <Route
+      render={({ location }) => (
+        <TransitionGroup>
+          <CSSTransition
+            key={location.pathname}
+            classNames="slide"
+            timeout={400}
+
+          >
+            <div className="w-full h-screen">
+              <div className="p-6 container ">
+                <Switch location={location}>
+                  <Route path={buildRoute(['auth'])}>
+                    <Auth />
+                  </Route>
+                  <Route path={buildRoute(['barcode'])}>
+                    <Barcode />
+                  </Route>
+                  <Route path={buildRoute(['stats'])}>
+                    <Achievements />
+                  </Route>
+                  <Route path={buildRoute([])}>
+                    <Home />
+                  </Route>
+                </Switch>
+              </div>
+            </div>
+          </CSSTransition>
+        </TransitionGroup>
+      )}
+    />
   )
 }
 

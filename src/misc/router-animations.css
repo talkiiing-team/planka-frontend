@@ -1,0 +1,15 @@
+.slide-enter,
+.slide-exit {
+  position: absolute;
+  transition: 0.4s ease transform;
+}
+.slide-enter {
+  transform: translate(110%);
+}
+.slide-exit-active {
+  transform: translate(-110%);
+}
+.slide-enter-active {
+  transform: translate(0);
+  z-index: 1;
+}
