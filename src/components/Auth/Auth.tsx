@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
-import Button from './ui/Button'
-import Input from './ui/Input'
-import useInput from './utils/useInput'
-import Select from './ui/Select'
+import useInput from '../../utils/useInput'
+import Input from '../../ui/Input'
+import Button from '../../ui/Button'
+import Select from '../../ui/Select'
 
-const options = [
+
+const roles = [
   { id: 'one', value: 'First Value' },
   { id: 'two', value: 'Second Value' },
   { id: 'three', value: 'Third Value' },
 ]
 
-const App = () => {
+const Auth = () => {
   const [counter, setCounter] = useState(0)
   const name = useInput('Vitaly')
   const email = useInput('')
@@ -37,4 +38,4 @@ const App = () => {
   )
 }
 
-export default App
+export default Auth

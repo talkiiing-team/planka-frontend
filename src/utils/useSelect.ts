@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 
-export interface IUseInput<T> {
+export interface IUseSelect<T> {
   bind: {
     onChange: (
-      e: HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement
+      e: ChangeEvent<HTMLSelectElement>
     ) => any
-    value: [T, React.Dispatch<React.SetStateAction<T>>][0]
+    value: T
   }
   setValue: (newValue: T) => any
   reset: () => any
-  value: [T, React.Dispatch<React.SetStateAction<T>>][0]
+  value: T
 }
 
-const useInput = <T>(defaultValue: T): IUseInput<T> => {
+// WIP
+const useSelect = <T>(defaultValue: T): IUseSelect<T> => {
   const [value, setValue] = useState<T>(defaultValue)
   return {
     value,
@@ -20,11 +21,11 @@ const useInput = <T>(defaultValue: T): IUseInput<T> => {
     reset: () => setValue(defaultValue),
     bind: {
       onChange: (
-        e: HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement
-      ) => setValue((e.value ? e.value : (e as unknown)) as T),
+        e: ChangeEvent<HTMLSelectElement>
+      ) => setValue((e.target.value ? e.target.value : (e as unknown)) as T),
       value: value,
     },
   }
 }
 
-export default useInput
+export default useSelect
