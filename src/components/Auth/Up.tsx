@@ -21,8 +21,6 @@ const Up = () => {
   const select = useInput('')
   return (
     <div className="flex flex-col gap-y-4">
-      <Link to={'/auth'}><RTitle value={'Форма регистрации'}/></Link>
-      <Link to={'/In'}><RTitle value={'Форма входа'}/></Link>
       <Input model={name} label={'Ваше Имя'} id={'name'} />
       <Input model={nickname} label={'Никнейм'} id={'nickname'} />
       <Input model={pass} label={'Пароль'} type={'password'} />

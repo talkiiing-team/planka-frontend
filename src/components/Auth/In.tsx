@@ -12,14 +12,6 @@ const In = () => {
   const pass = useInput('')
   return (
     <div className="flex flex-col gap-y-4">
-      <ul>
-        <li>
-          <Link to={'/auth'}><RTitle value={'Форма регистрации'}/></Link>
-        </li>
-        <li>
-          <Link to={'/In'}><RTitle value={'Форма входа'}/></Link>
-        </li>
-      </ul>
       <Input model={nickname} label={'Никнейм'} id={'nickname'} />
       <Input model={pass} label={'Пароль'} type={'password'} />
       <Button value={'Войти'} onClick={() => true} />
