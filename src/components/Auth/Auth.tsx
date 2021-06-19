@@ -1,9 +1,20 @@
-import React from 'react'
-import { Route, Switch, useRouteMatch } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Route, Switch, useHistory, useRouteMatch } from 'react-router-dom'
 import Up from './Up'
 import In from './In'
+import backly from '../../services/backly/backly'
+import { buildRoute } from '../../routes/routes'
 
 const Auth = () => {
+  const history = useHistory()
+
+  useEffect(() => {
+    console.log('auth state', backly.auth.state)
+    if (backly.auth.state) {
+      history.replace(buildRoute([]))
+    }
+  }, [backly.auth.state])
+
   let match = useRouteMatch()
 
   return (
@@ -16,7 +27,7 @@ const Auth = () => {
           <Up />
         </Route>
         <Route path={`${match.path}/`}>
-          <Up />
+          <In />
         </Route>
       </Switch>
     </div>

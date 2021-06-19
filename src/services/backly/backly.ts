@@ -34,6 +34,7 @@ class Backly {
         })
         .catch((e: any) => {
           rej && rej(e)
+          this.auth.state = false
         })
       return true
     },
@@ -46,9 +47,11 @@ class Backly {
         })
         .then((r) => {
           res && res(r)
+          this.auth.state = true
         })
         .catch((e) => {
           rej && rej(e)
+          this.auth.state = false
           // Show login page (potentially with `e.message`)
           console.error('Authentication error', e)
         })
@@ -58,9 +61,11 @@ class Backly {
         .reAuthenticate()
         .then((r) => {
           res && res(r)
+          this.auth.state = true
         })
         .catch((e) => {
           rej && rej(e)
+          this.auth.state = false
         })
     },
     logout: async () => {

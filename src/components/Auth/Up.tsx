@@ -3,7 +3,7 @@ import useInput from '../../utils/useInput'
 import Input from '../../ui/Input'
 import Button from '../../ui/Button'
 import Select from '../../ui/Select'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import RLink from '../../ui/RLink'
 import backly from '../../services/backly/backly'
 import UserModel from '../../models/user.model'
@@ -20,6 +20,8 @@ const Up = () => {
   const pass = useInput('')
   const select = useInput('')
   const [error, setError] = useState('')
+
+  const history = useHistory()
 
   const register = () => {
     backly.auth.register(
@@ -39,6 +41,7 @@ const Up = () => {
             const res = await backly.app.get('authentication')
             console.log(res)
             backly.app.authentication.setAccessToken(res.accessToken)
+            history.replace('/')
           },
           () => {
             console.warn('Authentication after registration failed')
@@ -58,7 +61,7 @@ const Up = () => {
       <h1 className="text-center">Регистрация</h1>
       <div className="flex flex-row justify-center gap-x-2 mb-3">
         <p>Уже есть аккаунт?</p>
-        <Link to={`/auth/in`}>
+        <Link replace to={`/auth/in`}>
           <RLink value="Войти" />
         </Link>
       </div>

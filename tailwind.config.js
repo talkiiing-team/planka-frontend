@@ -16,7 +16,7 @@ module.exports = {
   },
   variants: {
     extend: {
-      backgroundColor: ['active'],
+      backgroundColor: ['active', 'disabled'],
       scale: ['focus-within', 'group-focus'],
     },
   },

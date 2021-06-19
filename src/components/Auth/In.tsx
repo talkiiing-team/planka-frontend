@@ -5,13 +5,15 @@ import Button from '../../ui/Button'
 import { Link } from 'react-router-dom'
 import RLink from '../../ui/RLink'
 import backly from '../../services/backly/backly'
-import UserModel from '../../models/user.model'
 import ErrorLine from '../../ui/ErrorLine'
+import { useHistory } from 'react-router-dom'
 
 const In = () => {
   const nickname = useInput('')
   const pass = useInput('')
   const [error, setError] = useState('')
+
+  const history = useHistory()
 
   const login = () => {
     backly.auth.login(
@@ -19,25 +21,14 @@ const In = () => {
         login: nickname.value,
         password: pass.value,
       },
-      (r: UserModel) => {
-        backly.auth.login(
-          {
-            login: nickname.value,
-            password: pass.value,
-          },
-          async () => {
-            const res = await backly.app.get('authentication')
-            console.log(res)
-            backly.app.authentication.setAccessToken(res.accessToken)
-          },
-          () => {
-            console.warn('Authentication after registration failed')
-            setError('Unknown error')
-          }
-        )
+      async () => {
+        const res = await backly.app.get('authentication')
+        console.log(res)
+        backly.app.authentication.setAccessToken(res.accessToken)
+        history.replace('/')
       },
       (e: any) => {
-        console.warn('Log In is not succeed', e)
+        console.warn('Authentication failed', e)
         setError(e.message)
       }
     )
@@ -45,11 +36,11 @@ const In = () => {
 
   return (
     <div className="flex flex-col gap-y-4">
-      <h1 className='text-center'>Войти</h1>
-      <div className='flex flex-row gap-x-2 justify-center mb-3'>
+      <h1 className="text-center">Войти</h1>
+      <div className="flex flex-row gap-x-2 justify-center mb-3">
         <p>Нет аккаунта?</p>
-        <Link to={`/auth/up`}>
-          <RLink value='Создать!'/>
+        <Link replace to={`/auth/up`}>
+          <RLink value="Создать!" />
         </Link>
       </div>
       <Input model={nickname} label={'Никнейм'} id={'nickname'} />
