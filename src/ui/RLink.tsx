@@ -5,17 +5,17 @@ interface RTitleProps {
   className?: string
 }
 
-const RTitle = (props: RTitleProps) => {
+const RLink = (props: RTitleProps) => {
   return (
-    <button
+    <a
       className={`${props.className}
       cursor-pointer focus:outline-none
       flex items-center justify-center tracking-wide
       outline-none`}
     >
       {props.value || ''}
-    </button>
+    </a>
   )
 }
 
-export default RTitle
+export default RLink

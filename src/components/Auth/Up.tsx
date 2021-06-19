@@ -4,7 +4,7 @@ import Input from '../../ui/Input'
 import Button from '../../ui/Button'
 import Select from '../../ui/Select'
 import { Link } from 'react-router-dom'
-import RTitle from '../../ui/RTitle'
+import RLink from '../../ui/RLink'
 
 const roles = [
   { id: 'director', value: 'Управляющий' },
@@ -28,7 +28,7 @@ const Up = () => {
       <div className='flex flex-row justify-end gap-x-2'>
         <p>Уже есть аккаунт?</p>
         <Link to={`/auth/in`}>
-          <RTitle value='Войти'/>
+          <RLink value='Войти'/>
         </Link>
       </div>
     </div>

@@ -3,7 +3,7 @@ import useInput from '../../utils/useInput'
 import Input from '../../ui/Input'
 import Button from '../../ui/Button'
 import { Link } from 'react-router-dom'
-import RTitle from '../../ui/RTitle'
+import RLink from '../../ui/RLink'
 
 const In = () => {
   const nickname = useInput('')
@@ -16,7 +16,7 @@ const In = () => {
       <Button value={'Войти'} onClick={() => true} />
       <div className='flex flex-row justify-end'>
         <Link to={`/auth/up`}>
-          <RTitle value='Зарегистрироваться'/>
+          <RLink value='Зарегистрироваться'/>
         </Link>
       </div>
     </div>
