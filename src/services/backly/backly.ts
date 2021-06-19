@@ -41,7 +41,7 @@ class Backly {
       app
         .authenticate({
           strategy: 'local',
-          email: data.login,
+          login: data.login,
           password: data.password,
         })
         .then((r) => {

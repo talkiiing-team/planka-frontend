@@ -5,12 +5,12 @@ import feathersClient from '@feathersjs/client'
 import auth from '@feathersjs/authentication-client'
 
 const app = feathers()
-const restClient = rest('http://feathers-api.com')
+const restClient = rest('https://heal-server.herokuapp.com')
 app.configure(restClient.axios(axios))
 
 app.configure(feathersClient.authentication())
 app.configure(auth({
-  storageKey: 'Auth-Token'
+  storageKey: 'AuthToken'
 }))
 
 export {app}

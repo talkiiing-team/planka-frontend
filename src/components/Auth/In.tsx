@@ -2,10 +2,6 @@ import React, { useState } from 'react'
 import useInput from '../../utils/useInput'
 import Input from '../../ui/Input'
 import Button from '../../ui/Button'
-import RTitle from '../../ui/RTitle'
-import {
-  Link
-} from "react-router-dom";
 
 const In = () => {
   const nickname = useInput('')

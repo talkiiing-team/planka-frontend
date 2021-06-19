@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
-import { Link, Route, Switch, useRouteMatch, useParams } from 'react-router-dom'
+import React from 'react'
+import { Link, Route, Switch, useRouteMatch } from 'react-router-dom'
 import Up from './Up'
 import In from './In'
-import RTitle from '../../ui/RTitle'
 
 const Auth = () => {
   let match = useRouteMatch()
