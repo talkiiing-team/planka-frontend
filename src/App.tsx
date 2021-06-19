@@ -32,7 +32,7 @@ const App = () => {
       navigator.serviceWorker.getRegistration().then(function (reg) {
         reg !== undefined && reg
           ? reg.showNotification('Hello world!')
-          : console.log('No wayyyy')
+          : console.log('Notification isn\'t delivered')
       })
     }
   }

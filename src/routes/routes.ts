@@ -22,7 +22,6 @@ const buildRoute = (routeNodes: string[]) => {
     '/' +
     routeNodes
       .map((v) => {
-        console.log(v, branch)
         if (branch.hasOwnProperty(v)) {
           // @ts-ignore
           branch = branch[v]

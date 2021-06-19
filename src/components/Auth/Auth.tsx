@@ -9,7 +9,6 @@ const Auth = () => {
   const history = useHistory()
 
   useEffect(() => {
-    console.log('auth state', backly.auth.state)
     if (backly.auth.state) {
       history.replace(buildRoute([]))
     }

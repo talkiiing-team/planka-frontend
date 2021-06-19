@@ -39,7 +39,6 @@ const Up = () => {
           },
           async () => {
             const res = await backly.app.get('authentication')
-            console.log(res)
             backly.app.authentication.setAccessToken(res.accessToken)
             history.replace('/')
           },
@@ -65,16 +64,31 @@ const Up = () => {
           <RLink value="Войти" />
         </Link>
       </div>
-      <Input model={name} label={'Ваше Имя'} id={'name'} />
-      <Input model={nickname} label={'Никнейм'} id={'nickname'} />
-      <Input model={pass} label={'Пароль'} type={'password'} />
+      <Input
+        model={name}
+        label={'Ваше Имя'}
+        id={'name'}
+        onKeyPress={() => register()}
+      />
+      <Input
+        model={nickname}
+        label={'Никнейм'}
+        id={'nickname'}
+        onKeyPress={() => register()}
+      />
+      <Input
+        model={pass}
+        label={'Пароль'}
+        type={'password'}
+        onKeyPress={() => register()}
+      />
       <Select
         model={select}
         label={'Ваша роль...'}
         options={roles}
         className={'w-full'}
       />
-      <Button value={'Зарегистрироваться'} onClick={() => register()} onKeyPress={() => register()} />
+      <Button value={'Зарегистрироваться'} onClick={() => register()} />
       {error && <ErrorLine value={error} />}
     </div>
   )

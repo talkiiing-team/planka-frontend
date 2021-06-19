@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { IUseInput } from '../utils/useInput'
 
 interface IInputProps<T> {
+  onKeyPress?: () => void
   onFocusOut?: () => any
   model: IUseInput<T>
   className?: string
@@ -49,6 +50,10 @@ function Input<T = string>(props: IInputProps<T>) {
           setFocus(false)
           props.onFocusOut && props.onFocusOut()
         }}
+        onKeyPress={
+          props.onKeyPress &&
+          ((e) => props.onKeyPress && e.key === 'Enter' && props.onKeyPress())
+        }
       />
       {props.label && (
         <label

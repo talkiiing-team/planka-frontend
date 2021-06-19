@@ -19,13 +19,14 @@ const Home = () => {
         Удобный сервис для трекинга выполнения плана продаж для Вашего бизнеса
       </p>
       <Link to={buildRoute(['barcode'])}>
-        <Button value="Сканировать Barcode" className="text-blue-500" />
+        <Button value="Сканировать код товара" className="text-blue-500" />
       </Link>
-      <Button
-        value="Выйти из системы"
-        onClick={() => logout()}
-        className="mt-80"
-      />
+      <div className="fixed bottom-6">
+        <Button
+          value="Выйти из системы"
+          onClick={() => logout()}
+        />
+      </div>
     </div>
   )
 }

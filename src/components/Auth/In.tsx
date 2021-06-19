@@ -23,7 +23,6 @@ const In = () => {
       },
       async () => {
         const res = await backly.app.get('authentication')
-        console.log(res)
         backly.app.authentication.setAccessToken(res.accessToken)
         history.replace('/')
       },
@@ -43,8 +42,18 @@ const In = () => {
           <RLink value="Создать!" />
         </Link>
       </div>
-      <Input model={nickname} label={'Никнейм'} id={'nickname'} />
-      <Input model={pass} label={'Пароль'} type={'password'} />
+      <Input
+        model={nickname}
+        label={'Никнейм'}
+        id={'nickname'}
+        onKeyPress={() => login()}
+      />
+      <Input
+        model={pass}
+        label={'Пароль'}
+        type={'password'}
+        onKeyPress={() => login()}
+      />
       <Button value={'Войти'} onClick={() => login()} />
       {error && <ErrorLine value={error} />}
     </div>
