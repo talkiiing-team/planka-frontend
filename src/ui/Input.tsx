@@ -12,20 +12,21 @@ interface IInputProps<T> {
 
 function Input<T = string>(props: IInputProps<T>) {
   const [labelState, setLabelState] = useState<boolean>(false)
+  const [focus, setFocus] = useState(false)
 
   const handleChanges = (focusState: boolean) => {
-    if ((props.model.value as unknown as string) === '' && !focusState) {
-      setLabelState(false)
+    if ((props.model.value as unknown as string) === '') {
+      setLabelState(focusState)
     } else {
       setLabelState(true)
     }
   }
 
-  useEffect(() => handleChanges(false), [props.model.value])
+  useEffect(() => handleChanges(focus), [focus, props.model.value])
 
   const handleAutoFill = (e: any) => {
-    setLabelState(e.animationName === "onAutoFillStart")
-  };
+    setLabelState(e.animationName === 'onAutoFillStart')
+  }
 
   return (
     <div
@@ -43,9 +44,9 @@ function Input<T = string>(props: IInputProps<T>) {
         // @ts-ignore
         value={props.model.bind.value}
         onChange={props.model.bind.onChange}
-        onFocus={() => handleChanges(true)}
+        onFocus={() => setFocus(true)}
         onBlur={() => {
-          handleChanges(false)
+          setFocus(false)
           props.onFocusOut && props.onFocusOut()
         }}
       />

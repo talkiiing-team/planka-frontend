@@ -7,14 +7,14 @@ interface RLinkProps {
 
 const RLink = (props: RLinkProps) => {
   return (
-    <a
+    <button
       className={`${props.className}
-      cursor-pointer
+      cursor-pointer select-none
       flex items-center justify-center tracking-wide
-      outline-none`}
+      outline-none focus:outline-none`}
     >
       {props.value || ''}
-    </a>
+    </button>
   )
 }
 
