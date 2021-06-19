@@ -8,6 +8,7 @@ import QrReader from 'react-weblineindia-qrcode-scanner'
 const Barcode = () => {
   const [code, setCode] = useState('')
   const [isActive, setIsActive] = useState(true)
+  const [error, setError] = useState('')
 
   const handleChanges = (newValue: string) => {
     if (newValue && isActive) {
@@ -29,7 +30,10 @@ const Barcode = () => {
               transform: 'translate(0, -2rem)',
             }}
             delay={300}
-            onError={(r: any) => console.error('err', r)}
+            onError={(r: any) => {
+              console.error('err', r)
+              setError(r)
+            }}
             onScan={handleChanges}
           />
         ) : (
@@ -53,6 +57,7 @@ const Barcode = () => {
       <Link to={buildRoute([])}>
         <Button value="Назад" className="text-blue-500" />
       </Link>
+      {error}
     </div>
   )
 }
