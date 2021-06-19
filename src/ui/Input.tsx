@@ -1,4 +1,4 @@
-import React, { AnimationEventHandler, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IUseInput } from '../utils/useInput'
 
 interface IInputProps<T> {

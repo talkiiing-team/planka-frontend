@@ -51,11 +51,7 @@ function Select(props: ISelectProps) {
   useEffect(() => {
     setSOption(props.options.find((v) => props.model.bind.value === v.id))
   }, [props.model.bind.value])
-
-  const toggle = () => {
-    setLayPaper(!layPaper)
-  }
-
+  
   const toggleForced = (forceValue: boolean) => {
     setLayPaper(forceValue)
   }
