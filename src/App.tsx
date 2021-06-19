@@ -7,6 +7,8 @@ import {
 import Backly from './services/backly/backly'
 import Auth from './components/Auth/Auth'
 import Home from './components/Home/Home'
+import In from './components/Auth/In'
+import Up from './components/Auth/Up'
 
 const App = () => {
 
@@ -18,8 +20,8 @@ const App = () => {
     <div className="p-6 container">
       <Router>
           <Switch>
-            <Route path="/auth/:variant">
-              <Auth />
+            <Route path="/auth">
+              <Auth/>
             </Route>
             <Route path="/">
               <Home />
