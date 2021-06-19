@@ -5,6 +5,11 @@ import Auth from './components/Auth/Auth'
 import Home from './components/Home/Home'
 import { buildRoute } from './routes/routes'
 import Barcode from './components/Barcode/Barcode'
+import {
+  isNotificationsSupported,
+  notificationService,
+} from './services/notifications/notifications'
+import Achievements from './components/Achievements/Achievements'
 
 const App = () => {
   const history = useHistory()
@@ -20,33 +25,22 @@ const App = () => {
         history.push(buildRoute(['auth']))
       }
     )
-
-    Notification.requestPermission(function (status) {
-      console.log('Notification permission status:', status)
-    })
-    displayNotification()
+    isNotificationsSupported() && notificationService.send('Hi, testing!')
   }, [])
-
-  function displayNotification() {
-    if (Notification.permission === 'granted') {
-      navigator.serviceWorker.getRegistration().then(function (reg) {
-        reg !== undefined && reg
-          ? reg.showNotification('Hello world!')
-          : console.log('Notification isn\'t delivered')
-      })
-    }
-  }
 
   return (
     <div className="p-6 container ">
       <Switch>
-        <Route path="/auth">
+        <Route path={buildRoute(['auth'])}>
           <Auth />
         </Route>
-        <Route path="/barcode">
+        <Route path={buildRoute(['barcode'])}>
           <Barcode />
         </Route>
-        <Route path="/">
+        <Route path={buildRoute(['stats'])}>
+          <Achievements />
+        </Route>
+        <Route path={buildRoute([])}>
           <Home />
         </Route>
       </Switch>

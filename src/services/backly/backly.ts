@@ -19,7 +19,7 @@ export interface BacklyAuth {
 }
 
 class Backly {
-  // Home
+  // Achievements
   auth: BacklyAuth = {
     ready: false,
     state: false,
@@ -48,6 +48,8 @@ class Backly {
         .then((r) => {
           res && res(r)
           this.auth.state = true
+          //this.app.authentication.storage.setItem('user', r.user)
+          localStorage.setItem('user', JSON.stringify(r.user))
         })
         .catch((e) => {
           rej && rej(e)
@@ -62,6 +64,7 @@ class Backly {
         .then((r) => {
           res && res(r)
           this.auth.state = true
+          localStorage.setItem('user', JSON.stringify(r.user))
         })
         .catch((e) => {
           rej && rej(e)

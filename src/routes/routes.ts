@@ -7,6 +7,16 @@ const routes = {
   barcode: {
     default: 'barcode',
   },
+  qrcode: {
+    default: 'qrcode',
+  },
+  leaderboard: {
+    default: 'leaderboard',
+  },
+  stats: {
+    default: 'stats',
+  },
+
   default: '',
 }
 
