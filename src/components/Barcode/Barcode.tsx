@@ -9,6 +9,7 @@ const Barcode = () => {
   const [code, setCode] = useState('')
   const [isActive, setIsActive] = useState(true)
   const [error, setError] = useState('')
+  const [facing, setFacing] = useState('front')
 
   const handleChanges = (newValue: string) => {
     if (newValue && isActive) {
@@ -20,7 +21,15 @@ const Barcode = () => {
   return (
     <div className="flex flex-col gap-y-4 mx-auto items-center text-center">
       <h1 className="text-center text-4xl mt-20 mb-3 w-full">Barcode</h1>
-      <p>Просканируйте баркод камерой</p>
+      <p>
+        Просканируйте баркод камерой{' '}
+        <span
+          onClick={() => setFacing((r) => (r === 'rear' ? 'front' : 'rear'))}
+          className="text-blue-500"
+        >
+          Сменить
+        </span>
+      </p>
       <div className="object-scale-down h-32 overflow-hidden">
         {isActive ? (
           <QrReader
@@ -34,6 +43,7 @@ const Barcode = () => {
               console.error('err', r)
               setError(r)
             }}
+            facingMode={facing}
             onScan={handleChanges}
           />
         ) : (
