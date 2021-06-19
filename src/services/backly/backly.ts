@@ -32,4 +32,6 @@ class Backly {
 
 const classicBacklyInstance = new Backly()
 
+
 export default classicBacklyInstance
+
