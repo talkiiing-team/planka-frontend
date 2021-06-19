@@ -1,15 +1,15 @@
 import React from 'react'
 
-interface RTitleProps {
+interface RLinkProps {
   value?: string,
   className?: string
 }
 
-const RLink = (props: RTitleProps) => {
+const RLink = (props: RLinkProps) => {
   return (
     <a
       className={`${props.className}
-      cursor-pointer focus:outline-none
+      cursor-pointer
       flex items-center justify-center tracking-wide
       outline-none`}
     >
