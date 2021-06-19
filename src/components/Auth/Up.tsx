@@ -15,21 +15,12 @@ const Up = () => {
   const pass = useInput('')
   const select = useInput('')
   return (
-    <div className="p-6">
-      <header className="flex flex-col gap-y-4">
-        <Input model={name} label={'Ваше Имя'} id={'name'}/>
-        <Input model={nickname} label={'Никнейм'} id={'nickname'} />
-        <Input model={pass} label={'Пароль'} type={'password'} />
-        <Select
-          model={select}
-          label={'Ваша роль...'}
-          options={roles}
-        />
-        <Button
-          value={'Продолжить регистрацию'}
-          onClick={() => true}
-        />
-      </header>
+    <div className="flex flex-col gap-y-4">
+      <Input model={name} label={'Ваше Имя'} id={'name'} />
+      <Input model={nickname} label={'Никнейм'} id={'nickname'} />
+      <Input model={pass} label={'Пароль'} type={'password'} />
+      <Select model={select} label={'Ваша роль...'} options={roles} />
+      <Button value={'Зарегистрироваться'} onClick={() => true} />
     </div>
   )
 }

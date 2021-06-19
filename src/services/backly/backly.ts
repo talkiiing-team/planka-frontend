@@ -10,7 +10,7 @@ export interface BacklyAuth {
 }
 
 class Backly {
-  // Auth
+  // Home
   auth: BacklyAuth = {
     ready: false,
     state: false,
