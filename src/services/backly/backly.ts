@@ -1,12 +1,21 @@
 import { app } from '../feathers/feathers'
-import feathersClient from '@feathersjs/client'
 import feathers from '@feathersjs/feathers'
 
 export interface BacklyAuth {
   ready: boolean
   state: boolean
-  register: () => boolean
-  login: () => boolean
+  register: (
+    data: { login: string; password: string; name: string; role: string },
+    res?: CallableFunction,
+    rej?: CallableFunction
+  ) => Promise<boolean>
+  login: (
+    data: { login: string; password: string },
+    res?: CallableFunction,
+    rej?: CallableFunction
+  ) => Promise<void>
+  reAuth: (res?: CallableFunction, rej?: CallableFunction) => Promise<void>
+  logout: () => Promise<boolean>
 }
 
 class Backly {
@@ -14,11 +23,48 @@ class Backly {
   auth: BacklyAuth = {
     ready: false,
     state: false,
-    register: (): boolean => {
-      app.configure(feathersClient.authentication())
+    register: async (data, res, rej) => {
+      app
+        .service('users')
+        .create({
+          ...data,
+        })
+        .then((r: any) => {
+          res && res(r)
+        })
+        .catch((e: any) => {
+          rej && rej(e)
+        })
       return true
     },
-    login: (): boolean => {
+    login: async (data, res, rej) => {
+      app
+        .authenticate({
+          strategy: 'local',
+          email: data.login,
+          password: data.password,
+        })
+        .then((r) => {
+          res && res(r)
+        })
+        .catch((e) => {
+          rej && rej(e)
+          // Show login page (potentially with `e.message`)
+          console.error('Authentication error', e)
+        })
+    },
+    reAuth: async (res, rej) => {
+      app
+        .reAuthenticate()
+        .then((r) => {
+          res && res(r)
+        })
+        .catch((e) => {
+          rej && rej(e)
+        })
+    },
+    logout: async () => {
+      await app.logout()
       return true
     },
   }
@@ -32,6 +78,4 @@ class Backly {
 
 const classicBacklyInstance = new Backly()
 
-
 export default classicBacklyInstance
-
