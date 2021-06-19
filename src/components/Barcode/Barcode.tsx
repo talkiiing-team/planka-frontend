@@ -9,7 +9,7 @@ const Barcode = () => {
   const [code, setCode] = useState('')
   const [isActive, setIsActive] = useState(true)
   const [error, setError] = useState('')
-  const [facing, setFacing] = useState('front')
+  const [facing, setFacing] = useState('rear')
 
   const handleChanges = (newValue: string) => {
     if (newValue && isActive) {
