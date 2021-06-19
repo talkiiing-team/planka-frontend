@@ -25,12 +25,12 @@ const Up = () => {
       <Input model={pass} label={'Пароль'} type={'password'} />
       <Select model={select} label={'Ваша роль...'} options={roles} />
       <Button value={'Зарегистрироваться'} onClick={() => true} />
-     <div className='flex flex-row justify-end'>
-        <h1 id='Enter' className='mr-2'>Уже есть аккаунт?</h1>
+      <div className='flex flex-row justify-end gap-x-2'>
+        <p>Уже есть аккаунт?</p>
         <Link to={`/auth/in`}>
           <RTitle value='Войти'/>
         </Link>
-     </div>
+      </div>
     </div>
 
   )
