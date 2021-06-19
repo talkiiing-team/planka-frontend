@@ -18,7 +18,7 @@ const App = () => {
     <div className="p-6 container">
       <Router>
           <Switch>
-            <Route path="/auth">
+            <Route path="/auth/:variant">
               <Auth />
             </Route>
             <Route path="/">
