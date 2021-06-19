@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { KeyboardEvent }  from 'react'
 
 interface IButtonProps {
   value?: string
   onClick?: () => any
+  onKeyPress?: () => any
   className?: string
   disabled?: boolean
 }
@@ -16,7 +17,8 @@ const Button = (props: IButtonProps) => {
     focus:bg-gray-100 focus:shadow-sm flex items-center justify-center select-none 
     outline-none focus:outline-none transition-all duration-100`}
       onClick={(e) => props.onClick && props.onClick()}
-    >
+      onKeyPress={(e) => {if(e.keyCode === 13) { props.onKeyPress && props.onKeyPress()}}}
+        >
       {props.value || ''}
     </button>
   )

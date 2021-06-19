@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { KeyboardEvent, useState } from 'react'
 import useInput from '../../utils/useInput'
 import Input from '../../ui/Input'
 import Button from '../../ui/Button'
@@ -74,7 +74,7 @@ const Up = () => {
         options={roles}
         className={'w-full'}
       />
-      <Button value={'Зарегистрироваться'} onClick={() => register()} />
+      <Button value={'Зарегистрироваться'} onClick={() => register()} onKeyPress={() => register()} />
       {error && <ErrorLine value={error} />}
     </div>
   )
