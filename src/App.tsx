@@ -12,12 +12,21 @@ const options = [
 
 const App = () => {
   const [counter, setCounter] = useState(0)
-  const name = useInput('Vitaly')
+  const name = useInput('')
   const email = useInput('')
   const pass = useInput('')
   const select = useInput('')
   return (
     <div className="p-6">
+      <div>
+        <Button
+          value={'Registration'}
+        />
+        <Button
+          value={'Log in'}
+
+          />
+      </div>
       <header className="flex flex-col gap-y-4">
         <Input model={name} label={'Name'} />
         <Input model={email} label={'E-Mail'} id={'email'} />

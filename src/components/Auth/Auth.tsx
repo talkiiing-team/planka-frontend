@@ -26,7 +26,7 @@ const Auth = () => {
         <Select
           model={select}
           label={'Select your option...'}
-          options={options}
+          options={roles}
         />
 
         <Button

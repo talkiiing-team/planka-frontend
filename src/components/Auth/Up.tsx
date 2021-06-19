@@ -25,11 +25,6 @@ const Up = () => {
           label={'Ваша роль...'}
           options={roles}
         />
-
-        <Button
-          value={'Продолжить регистрацию'}
-          onClick={() => setCounter((v) => v + 1)}
-        />
       </header>
     </div>
   )
