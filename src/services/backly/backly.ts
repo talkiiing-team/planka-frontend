@@ -69,6 +69,7 @@ class Backly {
         })
     },
     logout: async () => {
+      this.auth.state = false
       await app.logout()
       return true
     },
