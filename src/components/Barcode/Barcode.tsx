@@ -22,7 +22,7 @@ const Barcode = () => {
     <div className="flex flex-col gap-y-4 mx-auto items-center text-center">
       <h1 className="text-center text-4xl mt-20 mb-3 w-full">Barcode</h1>
       <p>
-        Просканируйте баркод камерой{' '}
+        Просканируйте баркод камерой.{' '}
         <span
           onClick={() => setFacing((r) => (r === 'rear' ? 'front' : 'rear'))}
           className="text-blue-500"
@@ -30,7 +30,7 @@ const Barcode = () => {
           Сменить
         </span>
       </p>
-      <div className="object-scale-down h-32 overflow-hidden">
+      <div className="object-scale-down h-40 overflow-hidden">
         {isActive ? (
           <QrReader
             style={{
@@ -48,8 +48,8 @@ const Barcode = () => {
           />
         ) : (
           <>
-            <p className="font-bold">Содержимое: {code}</p>
-            <div className="flex flex-col items-center justify-center h-full">
+            <p className="font-bold mt-10">Содержимое: {code}</p>
+            <div className="flex flex-col items-center mt-5">
               <button
                 className="text-blue-500 hover:text-blue-600 focus:text-blue-600 focus:outline-none"
                 onClick={() => {
@@ -64,10 +64,12 @@ const Barcode = () => {
         )}
       </div>
       <Button value="Подтвердить" className="text-blue-500" disabled={!code} />
-      <Link to={buildRoute([])}>
-        <Button value="Назад" className="text-blue-500" />
-      </Link>
-      {error}
+      <div className="fixed bottom-0 w-full p-6">
+        <Link to={buildRoute([])}>
+          <Button value="Назад"/>
+        </Link>
+        {error}
+      </div>
     </div>
   )
 }

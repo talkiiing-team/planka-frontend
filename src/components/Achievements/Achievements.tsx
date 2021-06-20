@@ -5,9 +5,9 @@ import UserModel from '../../models/user.model'
 import DoughnutChart from './Charts/Doughnut'
 
 const motivations = [
-  'Бесконечность не предел!',
-  'Без труда не вытащишь и рыбку...',
-  'Любишь кататься - люби и саночки возить',
+  ' Бесконечность не предел!',
+  ' Без труда не вытащишь и рыбку...',
+  ' Любишь кататься - люби и саночки возить',
 ]
 
 const Achievements = () => {
