@@ -69,7 +69,7 @@ function Footer(props: FooterProps) {
                   setConfirmQuit(true)
                 }
               }}
-              className="text-red-400 font-bold"
+              className="text-red-400 font-medium"
             />
           )}
           {props.options.includes('back') && (

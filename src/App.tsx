@@ -17,6 +17,7 @@ import Settings from './components/Settings/Settings'
 import settings from './services/settings/settings'
 import Button from './ui/Button'
 import Footer from './components/Footer/Footer'
+import Leaderboard from './components/Leaderboard/Leaderboard'
 
 const App = () => {
   const history = useHistory()
@@ -61,6 +62,9 @@ const App = () => {
                     </Route>
                     <Route path={buildRoute(['settings'])}>
                       <Settings />
+                    </Route>
+                    <Route path={buildRoute(['leaderboard'])}>
+                      <Leaderboard />
                     </Route>
                     <Route path={buildRoute([])}>
                       <Home />

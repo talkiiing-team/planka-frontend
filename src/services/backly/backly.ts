@@ -19,7 +19,6 @@ export interface BacklyAuth {
 }
 
 class Backly {
-  // Achievements
   auth: BacklyAuth = {
     ready: false,
     state: false,
