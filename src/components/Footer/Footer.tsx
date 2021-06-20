@@ -43,7 +43,7 @@ function Footer(props: FooterProps) {
   }, [])
 
   return (
-    <div className="fixed container max-w-3xl bottom-0 w-full p-6 z-50">
+    <div className="fixed bottom-0 left-0 right-0 mx-auto w-full max-w-3xl p-6 z-50">
       <div className="flex flex-col">
         <div className="flex flex-row gap-x-4">
           {props.options.includes('settings') && (
