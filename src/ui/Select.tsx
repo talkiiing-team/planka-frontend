@@ -95,7 +95,7 @@ function Select(props: ISelectProps) {
         </div>
         <div
           className={`paper w-full bg-white shadow-2xl absolute rounded-md 
-      ring-1 ring-gray-200 overflow-hidden transition-all duration-150
+      ring-1 ring-gray-200 overflow-hidden transition-all duration-150 z-full
        ${layPaper ? 'opacity-100 max-h-screen' : 'opacity-0 max-h-0'} ${
             sOption ? '-mt-18' : '-mt-12'
           }`}

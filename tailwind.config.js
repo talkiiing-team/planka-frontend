@@ -10,14 +10,18 @@ module.exports = {
         12: '3rem',
       },
       margin: {
-        '-18': '-4.5rem'
-      }
+        '-18': '-4.5rem',
+      },
+      zIndex: {
+        full: '1000',
+      },
     },
   },
   variants: {
     extend: {
       backgroundColor: ['active', 'disabled'],
       scale: ['focus-within', 'group-focus'],
+      textColor: ['active', 'disabled'],
     },
   },
   plugins: [],

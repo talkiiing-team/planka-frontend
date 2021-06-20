@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { Switch, Route, useHistory } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import './misc/router-animations.css'
+import './misc/additional-animations.css'
 import backly from './services/backly/backly'
 import Auth from './components/Auth/Auth'
 import Home from './components/Home/Home'
@@ -14,11 +15,9 @@ import {
 import Achievements from './components/Achievements/Achievements'
 import Settings from './components/Settings/Settings'
 import settings from './services/settings/settings'
-import useInput from './utils/useInput'
 
 const App = () => {
   const history = useHistory()
-  const animation = useInput('')
 
   useEffect(() => {
     console.log(backly)
@@ -46,8 +45,8 @@ const App = () => {
                 settings.state.options.animationType === 'none' ? 0 : 610
               }
             >
-              <div className="w-screen min-h-screen">
-                <div className="p-6 container ">
+              <div className="animated-part w-screen min-h-screen">
+                <div className="p-6 container max-w-3xl">
                   <Switch location={location}>
                     <Route path={buildRoute(['auth'])}>
                       <Auth />

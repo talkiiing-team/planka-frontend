@@ -8,6 +8,7 @@
     "@feathersjs/client": "^4.5.11",
     "@feathersjs/feathers": "^4.5.11",
     "@feathersjs/rest-client": "^4.5.11",
+    "@heroicons/react": "^1.0.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",

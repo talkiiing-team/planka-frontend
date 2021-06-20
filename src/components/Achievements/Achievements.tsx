@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import Button from '../../ui/Button'
 import UserModel from '../../models/user.model'
 import DoughnutChart from './Charts/Doughnut'
+import Footer from '../Footer/Footer'
 
 const motivations = [
   'Бесконечность не предел!',
@@ -32,9 +33,7 @@ const Achievements = () => {
       <div className="">
         <DoughnutChart />
       </div>
-      <div className="fixed bottom-0 w-full p-6">
-        <Button value="Назад" onClick={() => history.goBack()} />
-      </div>
+      <Footer options={['settings', 'back']} />
     </div>
   )
 }

@@ -4,6 +4,8 @@ import Button from '../../ui/Button'
 import { buildRoute } from '../../routes/routes'
 // @ts-ignore
 import QrReader from 'react-weblineindia-qrcode-scanner'
+import { RefreshIcon } from '@heroicons/react/outline'
+import Footer from '../Footer/Footer'
 
 const Barcode = () => {
   const [code, setCode] = useState('')
@@ -22,22 +24,24 @@ const Barcode = () => {
 
   return (
     <div className="flex flex-col gap-y-4 mx-auto items-center text-center">
-      <h1 className="text-center text-4xl mt-20 mb-3 w-full">Barcode</h1>
-      <p>
-        Просканируйте баркод камерой.{' '}
-        <span
-          onClick={() => setFacing((r) => (r === 'rear' ? 'front' : 'rear'))}
-          className="text-blue-500"
-        >
-          Сменить
-        </span>
+      <h1 className="text-center text-4xl mt-10 mb-3 w-full">Сканировать</h1>
+      <p>Наведите камеру на код</p>
+
+      <p
+        onClick={() => setFacing((r) => (r === 'rear' ? 'front' : 'rear'))}
+        className="text-blue-500 flex flex-row items-center gap-x-2 ring-1
+        ring-blue-500 px-2 py-1 rounded-md hover:bg-blue-50 active:text-white
+        transition-all duration-150 cursor-pointer active:bg-blue-500"
+      >
+        Сменить камеру <RefreshIcon className="w-4 h-4" />
       </p>
       <div className="object-scale-down h-40 overflow-hidden">
         {isActive ? (
           <QrReader
             style={{
               objectFit: 'scale-down',
-              height: '12rem',
+              maxHeight: '12rem',
+              maxWidth: '100%',
               transform: 'translate(0, -2rem)',
             }}
             delay={300}
@@ -67,9 +71,7 @@ const Barcode = () => {
       </div>
       <Button value="Подтвердить" className="text-blue-500" disabled={!code} />
       {error}
-      <div className="fixed bottom-0 w-full p-6">
-        <Button value="Назад" onClick={() => history.goBack()} />
-      </div>
+      <Footer options={['settings', 'back']} />
     </div>
   )
 }

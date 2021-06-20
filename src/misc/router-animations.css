@@ -15,7 +15,7 @@
 }
 
 .flight-enter,
-.flight-exit {
+.flight-exit, .animated-part  {
   position: absolute;
   transition: 0.6s ease transform, 0.25s ease opacity, 0.4s ease filter;
 }

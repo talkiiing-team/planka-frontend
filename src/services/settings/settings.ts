@@ -6,9 +6,9 @@ export interface IAnimationType {
 }
 
 export const EAnimationTypes: IAnimationType[] = [
-  { id: 'none', value: 'None' },
-  { id: 'slide', value: 'Slide' },
-  { id: 'flight', value: 'Flight' },
+  { id: 'none', value: 'Нет' },
+  { id: 'slide', value: 'Сдвиг' },
+  { id: 'flight', value: 'Вылет' },
 ]
 
 export const useAnimationType = (defaultValue: IAnimationType['id']) => {
