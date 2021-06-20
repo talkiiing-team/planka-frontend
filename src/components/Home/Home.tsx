@@ -9,28 +9,30 @@ const Home = () => {
   const history = useHistory()
 
   return (
-    <div className="relative flex flex-col gap-y-4 mx-auto items-center text-center">
-      <Logo className="text-center text-4xl mt-10 mb-2 w-32 select-none" />
-      <p className="my-2">
-        Удобный сервис для трекинга выполнения плана продаж для Вашего бизнеса
-      </p>
-      <Button
-        value="Сканировать код товара"
-        className="text-blue-500"
-        onClick={() => history.push(buildRoute(['barcode']))}
-      />
-      <Button
-        value="Достижения"
-        className="text-blue-500"
-        onClick={() => history.push(buildRoute(['stats']))}
-      />
-      <Button
-        value="Рейтинг"
-        className="text-blue-500"
-        onClick={() => history.push(buildRoute(['leaderboard']))}
-      />
+    <>
+      <div className="grid grid-flow-row gap-y-4 pt-10 justify-items-center">
+        <Logo className="mb-2 w-32 select-none" />
+        <p className="my-2 text-center">
+          Удобный сервис для трекинга выполнения плана продаж для Вашего бизнеса
+        </p>
+        <Button
+          value="Сканировать код товара"
+          className="text-blue-500"
+          onClick={() => history.push(buildRoute(['barcode']))}
+        />
+        <Button
+          value="Достижения"
+          className="text-blue-500"
+          onClick={() => history.push(buildRoute(['stats']))}
+        />
+        <Button
+          value="Рейтинг"
+          className="text-blue-500"
+          onClick={() => history.push(buildRoute(['leaderboard']))}
+        />
+      </div>
       <Footer options={['settings', 'quit']} />
-    </div>
+    </>
   )
 }
 
