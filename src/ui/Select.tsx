@@ -11,6 +11,7 @@ interface ISelectProps {
   className?: string
   label?: string
   options: IOptionModel[]
+  required?: boolean
 }
 
 interface IOptionProps {
@@ -108,18 +109,20 @@ function Select(props: ISelectProps) {
                 key={'label'}
               >
                 {props.label || 'Select one'}
-                <span
-                  className={'ml-4 underline cursor-pointer'}
-                  onClick={() => {
-                    setSOption(undefined)
-                  }}
-                >
-                  Unselect
-                </span>
+                {!props.required && (
+                  <span
+                    className={'ml-4 underline cursor-pointer'}
+                    onClick={() => {
+                      setSOption(undefined)
+                    }}
+                  >
+                    Unselect
+                  </span>
+                )}
               </div>
               <SelectOption
                 id={sOption.id}
-                key={-1}
+                key={'selected'}
                 value={sOption.value}
                 onClick={() => {
                   toggleForced(false)
@@ -129,7 +132,7 @@ function Select(props: ISelectProps) {
           ) : (
             <SelectOption
               id={''}
-              key={-2}
+              key={'__not_selected'}
               value={props.label || 'Select one'}
               onClick={() => {
                 toggleForced(false)
@@ -137,8 +140,8 @@ function Select(props: ISelectProps) {
               className={'text-gray-400'}
             />
           )}
-          {props.options.map((v, i) => {
-            return !sOption || sOption.id !== v.id ? (
+          {props.options.map((v, i) =>
+            !sOption || sOption.id !== v.id ? (
               <SelectOption
                 id={v.id}
                 key={v.id}
@@ -151,7 +154,7 @@ function Select(props: ISelectProps) {
             ) : (
               <></>
             )
-          })}
+          )}
         </div>
       </div>
     </>

@@ -31,6 +31,7 @@ const Settings = () => {
         model={animation}
         label={'Тип анимации'}
         className="w-full text-left"
+        required={true}
       />
       <Button
         value="Сохранить"

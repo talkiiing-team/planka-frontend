@@ -68,12 +68,14 @@ class Backly {
         })
         .catch((e) => {
           rej && rej(e)
+          localStorage.removeItem('user')
           this.auth.state = false
         })
     },
     logout: async () => {
       this.auth.state = false
       await app.logout()
+      localStorage.removeItem('user')
       return true
     },
   }

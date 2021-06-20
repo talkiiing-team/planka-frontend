@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Switch, Route, useHistory } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import './misc/router-animations.css'
@@ -34,10 +34,6 @@ const App = () => {
     isNotificationsSupported() && notificationService.send('Hi, testing!')
   }, [])
 
-  useEffect(() => {
-    console.log(settings.options.animationType)
-  }, [settings.options.animationType])
-
   return (
     <div className="w-screen scroll-root">
       <Route
@@ -45,8 +41,10 @@ const App = () => {
           <TransitionGroup>
             <CSSTransition
               key={location.pathname}
-              classNames="flight"
-              timeout={610}
+              classNames={settings.state.options.animationType || 'none'}
+              timeout={
+                settings.state.options.animationType === 'none' ? 0 : 610
+              }
             >
               <div className="w-screen min-h-screen">
                 <div className="p-6 container ">

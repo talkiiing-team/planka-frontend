@@ -29,30 +29,54 @@ export interface SettingsModel extends Record<string, any> {
   colorScheme: string
 }
 
-class Settings extends Component{
-  options: SettingsModel
+class Settings extends Component<
+  {},
+  { options: SettingsModel; isReady: boolean }
+> {
   storageKey = 'settings'
+  state = {
+    options: {
+      animationType: 'flight',
+      colorScheme: 'light',
+    },
+    isReady: false,
+  }
 
   constructor(props?: any) {
     super(props)
+
     const temp = localStorage.getItem(this.storageKey)
     if (temp) {
-      this.options = JSON.parse(temp) as SettingsModel
+      this.setState({
+        options: JSON.parse(temp) as SettingsModel,
+        isReady: true,
+      })
     } else {
-      this.options = {
-        animationType: 'flight',
-        colorScheme: 'light',
-      }
+      this.setState({
+        options: {
+          animationType: 'flight',
+          colorScheme: 'light',
+        },
+        isReady: true,
+      })
     }
+
+    localStorage.setItem(this.storageKey, JSON.stringify(this.state.options))
+    //setInterval(() => console.log(this.state.options.animationType), 1000)
   }
 
   public getOption = (optionName: string) =>
-    Object(this.options).hasOwnProperty(optionName)
-      ? this.options[optionName]
+    Object(this.state.options).hasOwnProperty(optionName)
+      ? // @ts-ignore
+        this.state.options[optionName]
       : undefined
 
   public setOptions = (newOptions: Partial<SettingsModel>) => {
-    this.options = Object.assign(this.options, newOptions)
+    this.state &&
+      this.setState({
+        options: Object.assign(this.state.options, newOptions),
+      })
+    localStorage.setItem(this.storageKey, JSON.stringify(this.state.options))
   }
 }
 
