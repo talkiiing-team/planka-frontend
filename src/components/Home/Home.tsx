@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import Button from '../../ui/Button'
 import { buildRoute } from '../../routes/routes'
@@ -6,6 +6,11 @@ import backly from '../../services/backly/backly'
 
 const Home = () => {
   const history = useHistory()
+  const [isActive, setIsActive] = useState(false)
+
+  const handleChanges = () => {
+    setIsActive(true)
+  }
 
   const logout = () => {
     backly.auth.logout()
@@ -40,8 +45,19 @@ const Home = () => {
         >
           Настройки
         </p>
-        <Button value="Выйти из системы" onClick={() => logout()} />
+        <div>
+          {isActive ? (
+              <div className="flex flex-col gap-y-3">
+              <p>Вы уверены, что хотите выйти?</p>
+            <Button value="Да" onClick={() => logout()}/>
+                <Button value="Нет"
+                  onClick={() => setIsActive(false)}/>
+              </div>
+          ) : (
+            <Button value="Выйти из системы" onClick={handleChanges}/>
+          )}
       </div>
+    </div>
     </div>
   )
 }
