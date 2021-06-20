@@ -81,9 +81,7 @@ function Select(props: ISelectProps) {
           )}
           <div
             className={`w-full paper h-12 px-4 text rounded-md bg-gray-50 
-           hover:bg-gray-100 focus:bg-gray-100 ${
-             sOption ? 'shadow-inner' : 'shadow-inner'
-           }
+           hover:bg-gray-100 focus:bg-gray-100
            outline-none focus:outline-none 
            transition-all duration-100 ${props.label ? 'pt-5 pb-1.5' : 'py-3'}`}
             tabIndex={0}
