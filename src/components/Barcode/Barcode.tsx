@@ -27,22 +27,21 @@ const Barcode = () => {
       <h1 className="text-center text-4xl mt-10 mb-3 w-full">Сканировать</h1>
       <p>Наведите камеру на код</p>
 
-      <p
+      {isActive && <p
         onClick={() => setFacing((r) => (r === 'rear' ? 'front' : 'rear'))}
         className="text-blue-500 flex flex-row items-center gap-x-2 ring-1
         ring-blue-500 px-2 py-1 rounded-md hover:bg-blue-50 active:text-white
         transition-all duration-150 cursor-pointer active:bg-blue-500"
       >
         Сменить камеру <RefreshIcon className="w-4 h-4" />
-      </p>
-      <div className="object-scale-down h-40 overflow-hidden">
+      </p>}
+      <div className="object-scale-down max-h-80 overflow-hidden">
         {isActive ? (
           <QrReader
             style={{
-              objectFit: 'scale-down',
-              maxHeight: '12rem',
+              maxHeight: '40rem',
               maxWidth: '100%',
-              transform: 'translate(0, -2rem)',
+              transform: 'translate(0, -25%)',
             }}
             delay={300}
             onError={(r: any) => {

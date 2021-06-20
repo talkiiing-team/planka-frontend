@@ -61,7 +61,7 @@ function Select(props: ISelectProps) {
     <>
       {layPaper && (
         <div
-          className="h-screen w-screen bg-black opacity-10 fixed top-0 left-0"
+          className="h-screen w-screen bg-black opacity-10 fixed top-0 left-0 z-full"
           onClick={() => toggleForced(false)}
         />
       )}
