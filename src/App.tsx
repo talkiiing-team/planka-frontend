@@ -12,9 +12,13 @@ import {
   notificationService,
 } from './services/notifications/notifications'
 import Achievements from './components/Achievements/Achievements'
+import Settings from './components/Settings/Settings'
+import settings from './services/settings/settings'
+import useInput from './utils/useInput'
 
 const App = () => {
   const history = useHistory()
+  const animation = useInput('')
 
   useEffect(() => {
     console.log(backly)
@@ -30,38 +34,46 @@ const App = () => {
     isNotificationsSupported() && notificationService.send('Hi, testing!')
   }, [])
 
-  return (
-    <Route
-      render={({ location }) => (
-        <TransitionGroup>
-          <CSSTransition
-            key={location.pathname}
-            classNames="slide"
-            timeout={400}
+  useEffect(() => {
+    console.log(settings.options.animationType)
+  }, [settings.options.animationType])
 
-          >
-            <div className="w-full h-screen">
-              <div className="p-6 container ">
-                <Switch location={location}>
-                  <Route path={buildRoute(['auth'])}>
-                    <Auth />
-                  </Route>
-                  <Route path={buildRoute(['barcode'])}>
-                    <Barcode />
-                  </Route>
-                  <Route path={buildRoute(['stats'])}>
-                    <Achievements />
-                  </Route>
-                  <Route path={buildRoute([])}>
-                    <Home />
-                  </Route>
-                </Switch>
+  return (
+    <div className="w-screen scroll-root">
+      <Route
+        render={({ location }) => (
+          <TransitionGroup>
+            <CSSTransition
+              key={location.pathname}
+              classNames="slide"
+              timeout={610}
+            >
+              <div className="w-screen min-h-screen">
+                <div className="p-6 container ">
+                  <Switch location={location}>
+                    <Route path={buildRoute(['auth'])}>
+                      <Auth />
+                    </Route>
+                    <Route path={buildRoute(['barcode'])}>
+                      <Barcode />
+                    </Route>
+                    <Route path={buildRoute(['stats'])}>
+                      <Achievements />
+                    </Route>
+                    <Route path={buildRoute(['settings'])}>
+                      <Settings />
+                    </Route>
+                    <Route path={buildRoute([])}>
+                      <Home />
+                    </Route>
+                  </Switch>
+                </div>
               </div>
-            </div>
-          </CSSTransition>
-        </TransitionGroup>
-      )}
-    />
+            </CSSTransition>
+          </TransitionGroup>
+        )}
+      />
+    </div>
   )
 }
 

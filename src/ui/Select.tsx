@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IUseInput } from '../utils/useInput'
 
-interface IOptionModel {
+export interface IOptionModel {
   id: string
   value: string
 }

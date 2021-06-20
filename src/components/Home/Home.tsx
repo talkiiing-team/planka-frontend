@@ -34,6 +34,12 @@ const Home = () => {
         onClick={() => history.push(buildRoute(['leaderboard']))}
       />
       <div className="fixed bottom-0 w-full p-6">
+        <p
+          onClick={() => history.push(buildRoute(['settings']))}
+          className="text-blue-500 mb-2"
+        >
+          Настройки
+        </p>
         <Button value="Выйти из системы" onClick={() => logout()} />
       </div>
     </div>

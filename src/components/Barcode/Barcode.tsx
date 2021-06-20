@@ -64,11 +64,11 @@ const Barcode = () => {
         )}
       </div>
       <Button value="Подтвердить" className="text-blue-500" disabled={!code} />
+      {error}
       <div className="fixed bottom-0 w-full p-6">
         <Link to={buildRoute([])}>
-          <Button value="Назад"/>
+          <Button value="Назад" />
         </Link>
-        {error}
       </div>
     </div>
   )

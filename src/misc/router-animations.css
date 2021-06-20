@@ -1,15 +1,40 @@
 .slide-enter,
 .slide-exit {
   position: absolute;
-  transition: 0.4s ease transform;
+  transition: 0.6s ease transform;
 }
 .slide-enter {
-  transform: translate(110%);
+  transform: translate(100%);
 }
 .slide-exit-active {
-  transform: translate(-110%);
+  transform: translate(-100%);
 }
 .slide-enter-active {
   transform: translate(0);
   z-index: 1;
+}
+
+.flight-enter,
+.flight-exit {
+  position: absolute;
+  transition: 0.6s ease transform, 0.25s ease opacity, 0.4s ease filter;
+}
+.flight-enter {
+  transform: scale(0.9);
+  opacity: 0;
+}
+.flight-exit-active {
+  transform: scale(0.6) translate(0, 18%);
+  opacity: 0;
+  filter: grayscale(100%);
+}
+.flight-enter-active {
+  transform: scale(1);
+  opacity: 1;
+  filter: grayscale(0%);
+  z-index: 1;
+}
+
+.scroll-root {
+  overflow-x: visible;
 }

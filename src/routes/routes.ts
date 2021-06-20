@@ -16,6 +16,9 @@ const routes = {
   stats: {
     default: 'stats',
   },
+  settings: {
+    default: 'settings',
+  },
 
   default: '',
 }
