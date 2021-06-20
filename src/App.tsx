@@ -45,7 +45,7 @@ const App = () => {
           <TransitionGroup>
             <CSSTransition
               key={location.pathname}
-              classNames="slide"
+              classNames="flight"
               timeout={610}
             >
               <div className="w-screen min-h-screen">

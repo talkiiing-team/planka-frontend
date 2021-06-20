@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import Button from '../../ui/Button'
 import { buildRoute } from '../../routes/routes'
 // @ts-ignore
@@ -10,6 +10,8 @@ const Barcode = () => {
   const [isActive, setIsActive] = useState(true)
   const [error, setError] = useState('')
   const [facing, setFacing] = useState('rear')
+
+  const history = useHistory()
 
   const handleChanges = (newValue: string) => {
     if (newValue && isActive) {
@@ -66,9 +68,7 @@ const Barcode = () => {
       <Button value="Подтвердить" className="text-blue-500" disabled={!code} />
       {error}
       <div className="fixed bottom-0 w-full p-6">
-        <Link to={buildRoute([])}>
-          <Button value="Назад" />
-        </Link>
+        <Button value="Назад" onClick={() => history.goBack()} />
       </div>
     </div>
   )
