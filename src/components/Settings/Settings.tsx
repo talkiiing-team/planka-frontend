@@ -4,7 +4,10 @@ import Button from '../../ui/Button'
 import { buildRoute } from '../../routes/routes'
 import useInput from '../../utils/useInput'
 import Select, { IOptionModel } from '../../ui/Select'
-import settings, { EAnimationTypes } from '../../services/settings/settings'
+import settings, {
+  EAnimationTypes,
+  EColorSchemes,
+} from '../../services/settings/settings'
 import Footer from '../Footer/Footer'
 
 const Settings = () => {
@@ -12,30 +15,36 @@ const Settings = () => {
   const [changes, setChanges] = useState(false)
 
   const animation = useInput('')
+  const colorScheme = useInput('')
 
   useEffect(() => {
     animation.setValue(settings.getOption('animationType'))
+    colorScheme.setValue(settings.getOption('colorScheme'))
   }, [])
 
   useEffect(() => {
-    if (settings.state.options.animationType !== animation.value) {
+    if (
+      settings.state.options.animationType !== animation.value ||
+      settings.state.options.colorScheme !== colorScheme.value
+    ) {
       setChanges(true)
     } else {
       setChanges(false)
     }
-  }, [animation.value])
+  }, [animation.value, colorScheme.value])
 
   const saveSettings = () => {
-    if (settings.state.options.animationType !== animation.value) {
+    if (changes) {
       settings.setOptions({
         animationType: animation.value,
+        colorScheme: colorScheme.value,
       })
     }
     history.push(buildRoute([]))
   }
 
   return (
-    <div className="flex flex-col gap-y-4 mx-auto items-center text-center">
+    <div className="flex flex-col space-y-4 mx-auto items-center text-center">
       <h1 className="text-center mt-10 mb-2 w-full">Настройки</h1>
       <h2 className="text-center my-2 w-full">Профиль</h2>
       <h2 className="text-center my-2 w-full">Общие</h2>
@@ -43,6 +52,13 @@ const Settings = () => {
         options={EAnimationTypes as unknown as IOptionModel[]}
         model={animation}
         label={'Тип анимации перехода'}
+        className="w-full text-left"
+        required={true}
+      />
+      <Select
+        options={EColorSchemes as unknown as IOptionModel[]}
+        model={colorScheme}
+        label={'Цветовая схема'}
         className="w-full text-left"
         required={true}
       />

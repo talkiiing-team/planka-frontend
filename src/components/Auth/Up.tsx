@@ -56,9 +56,9 @@ const Up = () => {
   }
 
   return (
-    <div className="flex flex-col gap-y-4 items-center">
+    <div className="flex flex-col space-y-4 items-center">
       <h1 className="text-center">Регистрация</h1>
-      <div className="flex flex-row justify-center gap-x-2 mb-3">
+      <div className="flex flex-row justify-center space-x-2 mb-3">
         <p>Уже есть аккаунт?</p>
         <Link replace to={`/auth/in`}>
           <RLink value="Войти" />

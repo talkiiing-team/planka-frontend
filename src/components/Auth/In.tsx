@@ -34,9 +34,9 @@ const In = () => {
   }
 
   return (
-    <div className="flex flex-col gap-y-4">
+    <div className="flex flex-col space-y-4">
       <h1 className="text-center">Войти</h1>
-      <div className="flex flex-row gap-x-2 justify-center mb-3">
+      <div className="flex flex-row space-x-2 justify-center mb-3">
         <p>Нет аккаунта?</p>
         <Link replace to={`/auth/up`}>
           <RLink value="Создать!" />

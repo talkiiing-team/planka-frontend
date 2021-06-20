@@ -17,7 +17,7 @@ const Auth = () => {
   let match = useRouteMatch()
 
   return (
-    <div className="flex flex-col gap-y-4 mt-16">
+    <div className="flex flex-col space-y-4 mt-16">
       <Switch>
         <Route path={`${match.path}/in`}>
           <In />

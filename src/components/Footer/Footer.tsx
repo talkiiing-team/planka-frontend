@@ -44,8 +44,8 @@ function Footer(props: FooterProps) {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 mx-auto w-full max-w-3xl p-6 z-50">
-      <div className="flex flex-col">
-        <div className="flex flex-row gap-x-4">
+      <div className="flex flex-col space-y-2">
+        <div className="flex flex-row space-x-4">
           {props.options.includes('settings') && (
             <button
               className={`w-16 px-4 py-3 shadow-md rounded-lg bg-gray-50 

@@ -18,6 +18,7 @@ import settings from './services/settings/settings'
 import Button from './ui/Button'
 import Footer from './components/Footer/Footer'
 import Leaderboard from './components/Leaderboard/Leaderboard'
+import Manage from './components/Manage/Manage'
 
 const App = () => {
   const history = useHistory()
@@ -35,6 +36,7 @@ const App = () => {
     )
     isNotificationsSupported() && notificationService.send('Hi, testing!')
   }, [])
+
 
   return (
     <div className="w-screen scroll-root">
@@ -65,6 +67,9 @@ const App = () => {
                     </Route>
                     <Route path={buildRoute(['leaderboard'])}>
                       <Leaderboard />
+                    </Route>
+                    <Route path={buildRoute(['manage'])}>
+                      <Manage />
                     </Route>
                     <Route path={buildRoute([])}>
                       <Home />

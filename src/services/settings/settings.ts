@@ -12,6 +12,12 @@ export const EAnimationTypes: IAnimationType[] = [
   { id: 'flightHard', value: 'Большой вылет' },
 ]
 
+export const EColorSchemes: IAnimationType[] = [
+  { id: 'default', value: 'По умолчанию' },
+  { id: 'light', value: 'Светлая' },
+  { id: 'dark', value: 'Темная' },
+]
+
 export const useAnimationType = (defaultValue: IAnimationType['id']) => {
   const [animation, set] = useState(
     EAnimationTypes.find((v) => v.id === defaultValue) || EAnimationTypes[0]

@@ -23,13 +23,13 @@ const Barcode = () => {
   }
 
   return (
-    <div className="flex flex-col gap-y-4 mx-auto items-center text-center">
+    <div className="flex flex-col space-y-4 mx-auto items-center text-center">
       <h1 className="text-center text-4xl mt-10 mb-3 w-full">Сканировать</h1>
       <p>Наведите камеру на код</p>
 
       {isActive && <p
         onClick={() => setFacing((r) => (r === 'rear' ? 'front' : 'rear'))}
-        className="text-blue-500 flex flex-row items-center gap-x-2 ring-1
+        className="text-blue-500 flex flex-row items-center space-x-2 ring-1
         ring-blue-500 px-2 py-1 rounded-md hover:bg-blue-50 active:text-white
         transition-all duration-150 cursor-pointer active:bg-blue-500"
       >

@@ -19,6 +19,9 @@ const routes = {
   settings: {
     default: 'settings',
   },
+  manage: {
+    default: 'manage',
+  },
 
   default: '',
 }
