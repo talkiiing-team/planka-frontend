@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import Button from '../../ui/Button'
 import { buildRoute } from '../../routes/routes'
-import Logo from '../../assets/logo.svg'
+import { ReactComponent as Logo } from '../../assets/logo.svg'
 import Footer from '../Footer/Footer'
 
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
 
   return (
     <div className="relative flex flex-col gap-y-4 mx-auto items-center text-center">
-      <img src={Logo} className="text-center text-4xl mt-10 mb-2 w-32" />
+      <Logo className="text-center text-4xl mt-10 mb-2 w-32 select-none" />
       <p className="my-2">
         Удобный сервис для трекинга выполнения плана продаж для Вашего бизнеса
       </p>

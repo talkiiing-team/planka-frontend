@@ -15,6 +15,8 @@ import {
 import Achievements from './components/Achievements/Achievements'
 import Settings from './components/Settings/Settings'
 import settings from './services/settings/settings'
+import Button from './ui/Button'
+import Footer from './components/Footer/Footer'
 
 const App = () => {
   const history = useHistory()
@@ -45,8 +47,8 @@ const App = () => {
                 settings.state.options.animationType === 'none' ? 0 : 610
               }
             >
-              <div className="animated-part w-screen min-h-screen">
-                <div className="p-6 container max-w-3xl">
+              <div className="animated-part w-full h-full">
+                <div className="p-6 container relative max-w-3xl">
                   <Switch location={location}>
                     <Route path={buildRoute(['auth'])}>
                       <Auth />

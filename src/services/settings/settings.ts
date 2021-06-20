@@ -9,6 +9,7 @@ export const EAnimationTypes: IAnimationType[] = [
   { id: 'none', value: 'Нет' },
   { id: 'slide', value: 'Сдвиг' },
   { id: 'flight', value: 'Вылет' },
+  { id: 'flightHard', value: 'Большой вылет' },
 ]
 
 export const useAnimationType = (defaultValue: IAnimationType['id']) => {
