@@ -141,3 +141,5 @@ dist
 .pnp.*
 
 .idea
+
+.vercel
