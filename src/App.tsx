@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { Switch, Route, useHistory } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import './misc/router-animations.css'
@@ -14,12 +14,23 @@ import {
 } from './services/notifications/notifications'
 import Achievements from './components/Achievements/Achievements'
 import Settings from './components/Settings/Settings'
-import settings from './services/settings/settings'
 import Leaderboard from './components/Leaderboard/Leaderboard'
 import Manage from './components/Manage/Manage'
 
+import { useSelector, useDispatch } from 'react-redux'
+import {
+  setOptions,
+  SettingsModel,
+  StorageKeySettings,
+} from './store/settings/settings'
+
 const App = () => {
   const history = useHistory()
+
+  const settings = useSelector(
+    (state: { settings: SettingsModel }) => state.settings
+  )
+  const dispatch = useDispatch()
 
   const reAuth = () => {
     backly.auth.reAuth(
@@ -31,11 +42,18 @@ const App = () => {
       }
     )
   }
+  useEffect(() => {
+    console.log(settings)
+  }, [settings])
 
   useEffect(() => {
-    console.log(backly)
-
     navigator.onLine ? reAuth() : document.addEventListener('online', reAuth)
+
+    const storedSettings = JSON.parse(
+      localStorage.getItem(StorageKeySettings) || '{}'
+    )
+    if (storedSettings)
+      dispatch(setOptions(Object.assign({}, storedSettings)))
 
     isNotificationsSupported() &&
       notificationService.send('Привет! Я - Тута, помощник в сервисе planka.')
@@ -50,10 +68,8 @@ const App = () => {
           <TransitionGroup>
             <CSSTransition
               key={location.pathname}
-              classNames={settings.state.options.animationType || 'none'}
-              timeout={
-                settings.state.options.animationType === 'none' ? 0 : 610
-              }
+              classNames={settings.options.animationType || 'none'}
+              timeout={settings.options.animationType === 'none' ? 0 : 610}
             >
               <div className="animated-part w-full h-full">
                 <div className="p-6 container relative max-w-3xl">

@@ -4,41 +4,56 @@ import Button from '../../ui/Button'
 import { buildRoute } from '../../routes/routes'
 import useInput from '../../utils/useInput'
 import Select, { IOptionModel } from '../../ui/Select'
-import settings, {
+import Footer from '../Footer/Footer'
+import { useDispatch, useSelector } from 'react-redux'
+import {
   EAnimationTypes,
   EColorSchemes,
-} from '../../services/settings/settings'
-import Footer from '../Footer/Footer'
+  ENotifyType,
+  setOptions,
+  SettingsModel,
+} from '../../store/settings/settings'
 
 const Settings = () => {
   const history = useHistory()
   const [changes, setChanges] = useState(false)
 
+  const options = useSelector(
+    (state: { settings: SettingsModel }) => state.settings.options
+  )
+  const dispatch = useDispatch()
+
   const animation = useInput('')
   const colorScheme = useInput('')
+  const notifyType = useInput('')
 
   useEffect(() => {
-    animation.setValue(settings.getOption('animationType'))
-    colorScheme.setValue(settings.getOption('colorScheme'))
+    animation.setValue(options.animationType)
+    colorScheme.setValue(options.colorScheme)
+    notifyType.setValue(options.notifyingType)
   }, [])
 
   useEffect(() => {
     if (
-      settings.state.options.animationType !== animation.value ||
-      settings.state.options.colorScheme !== colorScheme.value
+      options.animationType !== animation.value ||
+      options.colorScheme !== colorScheme.value ||
+      options.notifyingType !== notifyType.value
     ) {
       setChanges(true)
     } else {
       setChanges(false)
     }
-  }, [animation.value, colorScheme.value])
+  }, [animation.value, colorScheme.value, notifyType.value])
 
   const saveSettings = () => {
     if (changes) {
-      settings.setOptions({
-        animationType: animation.value,
-        colorScheme: colorScheme.value,
-      })
+      dispatch(
+        setOptions({
+          animationType: animation.value,
+          colorScheme: colorScheme.value,
+          notifyingType: notifyType.value,
+        })
+      )
     }
     history.push(buildRoute([]))
   }
@@ -59,6 +74,13 @@ const Settings = () => {
         options={EColorSchemes as unknown as IOptionModel[]}
         model={colorScheme}
         label={'Цветовая схема'}
+        className="w-full text-left"
+        required={true}
+      />
+      <Select
+        options={ENotifyType as unknown as IOptionModel[]}
+        model={notifyType}
+        label={'Тип уведомлений'}
         className="w-full text-left"
         required={true}
       />
