@@ -37,7 +37,8 @@ const App = () => {
 
     navigator.onLine ? reAuth() : document.addEventListener('online', reAuth)
 
-    isNotificationsSupported() && notificationService.send('Hi, testing!')
+    isNotificationsSupported() &&
+      notificationService.send('Привет! Я - Тута, помощник в сервисе planka.')
 
     return () => document.removeEventListener('online', reAuth)
   }, [])
