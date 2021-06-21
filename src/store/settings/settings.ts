@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { notificationService } from '../../services/notifications/notifications'
 
 export const StorageKeySettings = 'settings'
 
@@ -35,6 +36,10 @@ export interface SettingsModel extends Record<string, any> {
   isReady: boolean
 }
 
+const handler = (state: SettingsModel) => {
+  notificationService.canNotify = state.options.notifyingType === 'push';
+}
+
 export const settingsSlice = createSlice({
   name: 'settings',
   initialState: {
@@ -47,22 +52,10 @@ export const settingsSlice = createSlice({
   },
   reducers: {
     setOptions: (state, action) => {
-      state.options = Object.assign(state.options, action.payload)
+      state.options = { ...state.options, ...action.payload }
       localStorage.setItem(StorageKeySettings, JSON.stringify(state))
+      handler(state as SettingsModel)
     },
-    /*increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1
-    },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
-    },*/
   },
 })
 

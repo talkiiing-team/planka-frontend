@@ -1,7 +1,10 @@
+import Logo from '../../assets/logo.svg'
+
 const isNotificationsSupported = () => window.hasOwnProperty('Notification')
 
 class NotificationService {
   allowNotifications: boolean
+  canNotify: boolean = false
 
   constructor() {
     if (isNotificationsSupported()) {
@@ -26,10 +29,11 @@ class NotificationService {
   }
 
   send = (text: string) => {
-    if (false && this.allowNotifications) {
+    if (this.allowNotifications && this.canNotify) {
       navigator.serviceWorker.getRegistration().then(function (reg) {
+        console.log(Logo)
         reg !== undefined && reg
-          ? reg.showNotification(text)
+          ? reg.showNotification('planka.',{ body: text, icon: '/logo192.png' })
           : console.log("Notification isn't delivered")
       })
     }

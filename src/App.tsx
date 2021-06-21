@@ -49,11 +49,11 @@ const App = () => {
   useEffect(() => {
     navigator.onLine ? reAuth() : document.addEventListener('online', reAuth)
 
-    const storedSettings = JSON.parse(
-      localStorage.getItem(StorageKeySettings) || '{}'
-    )
+    const storedSettings = localStorage.getItem(StorageKeySettings)
     if (storedSettings)
-      dispatch(setOptions(Object.assign({}, storedSettings)))
+      dispatch(
+        setOptions((JSON.parse(storedSettings) as SettingsModel).options)
+      )
 
     isNotificationsSupported() &&
       notificationService.send('Привет! Я - Тута, помощник в сервисе planka.')
