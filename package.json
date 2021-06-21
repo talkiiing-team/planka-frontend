@@ -1,6 +1,6 @@
 {
-  "name": "trackly",
-  "version": "0.1.0",
+  "name": "planka.",
+  "version": "1.6.21",
   "private": true,
   "dependencies": {
     "@babel/core": "7.12.3",
@@ -22,7 +22,6 @@
     "@types/react-dom": "^16.9.13",
     "@types/react-redux": "^7.1.16",
     "@types/react-transition-group": "^4.4.1",
-    "@types/redux-localstorage": "^1.0.8",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
     "axios": "^0.21.1",
@@ -76,7 +75,6 @@
     "react-router-dom": "^5.2.0",
     "react-transition-group": "^4.4.2",
     "react-weblineindia-qrcode-scanner": "^1.0.0",
-    "redux-localstorage": "^0.4.1",
     "resolve": "1.18.1",
     "resolve-url-loader": "^3.1.2",
     "sass-loader": "^10.0.5",

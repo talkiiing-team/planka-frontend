@@ -46,6 +46,11 @@ const Home = () => {
               </>
             )}
             <Button
+              value="Мои привязки"
+              className="text-blue-500"
+              onClick={() => history.push(buildRoute(['bindings']))}
+            />
+            <Button
               value="Достижения"
               className="text-blue-500"
               onClick={() => history.push(buildRoute(['stats']))}

@@ -22,6 +22,9 @@ const routes = {
   manage: {
     default: 'manage',
   },
+  bindings: {
+    default: 'bindings',
+  },
 
   default: '',
 }

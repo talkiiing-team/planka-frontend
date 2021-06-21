@@ -1,10 +1,9 @@
-interface EntityModel extends Record<string, string | undefined> {
-  barcode: string
-  name: string
-  type: 'product' | 'service' | 'accessory'
+import EntityModel from './entity.model'
+
+interface BindingModel extends Record<string, string | any> {
   _id: string
-  brand?: string
-  model?: string
+  entity: EntityModel
+  active: boolean
 }
 
-export default EntityModel
+export default BindingModel

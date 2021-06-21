@@ -23,6 +23,7 @@ import {
   SettingsModel,
   StorageKeySettings,
 } from './store/settings/settings'
+import Bindings from './components/Bindings/Bindings'
 
 const App = () => {
   const history = useHistory()
@@ -91,6 +92,9 @@ const App = () => {
                     </Route>
                     <Route path={buildRoute(['manage'])}>
                       <Manage />
+                    </Route>
+                    <Route path={buildRoute(['bindings'])}>
+                      <Bindings />
                     </Route>
                     <Route path={buildRoute([])}>
                       <Home />
