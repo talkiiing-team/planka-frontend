@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { Switch, Route, useHistory } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
-import '@misc/router-animations.css'
-import '@misc/additional-animations.css'
+import './misc/router-animations.css'
+import './misc/additional-animations.css'
 import backly from './services/backly/backly'
 import Auth from './components/Auth/Auth'
 import Home from './components/Home/Home'
@@ -15,17 +15,13 @@ import {
 import Achievements from './components/Achievements/Achievements'
 import Settings from './components/Settings/Settings'
 import settings from './services/settings/settings'
-import Button from './ui/Button'
-import Footer from './components/Footer/Footer'
 import Leaderboard from './components/Leaderboard/Leaderboard'
 import Manage from './components/Manage/Manage'
 
 const App = () => {
   const history = useHistory()
 
-  useEffect(() => {
-    console.log(backly)
-
+  const reAuth = () => {
     backly.auth.reAuth(
       () => {
         console.log('Session continued succesfully')
@@ -34,9 +30,17 @@ const App = () => {
         history.push(buildRoute(['auth']))
       }
     )
-    isNotificationsSupported() && notificationService.send('Hi, testing!')
-  }, [])
+  }
 
+  useEffect(() => {
+    console.log(backly)
+
+    navigator.onLine ? reAuth() : document.addEventListener('online', reAuth)
+
+    isNotificationsSupported() && notificationService.send('Hi, testing!')
+
+    return () => document.removeEventListener('online', reAuth)
+  }, [])
 
   return (
     <div className="w-screen scroll-root">
