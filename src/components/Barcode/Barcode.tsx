@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import Button from '../../ui/Button'
-import { buildRoute } from '../../routes/routes'
 // @ts-ignore
 import QrReader from 'react-weblineindia-qrcode-scanner'
 import { RefreshIcon } from '@heroicons/react/outline'
@@ -12,8 +10,6 @@ const Barcode = () => {
   const [isActive, setIsActive] = useState(true)
   const [error, setError] = useState('')
   const [facing, setFacing] = useState('rear')
-
-  const history = useHistory()
 
   const handleChanges = (newValue: string) => {
     if (newValue && isActive) {
@@ -26,15 +22,17 @@ const Barcode = () => {
     <div className="flex flex-col space-y-4 mx-auto items-center text-center">
       <h1 className="text-center text-4xl mt-10 mb-3 w-full">Сканировать</h1>
       <p>Наведите камеру на код</p>
-
-      {isActive && <p
-        onClick={() => setFacing((r) => (r === 'rear' ? 'front' : 'rear'))}
-        className="text-blue-500 flex flex-row items-center space-x-2 ring-1
-        ring-blue-500 px-2 py-1 rounded-md hover:bg-blue-50 active:text-white
+      {isActive && (
+        <p
+          onClick={() => setFacing((r) => (r === 'rear' ? 'front' : 'rear'))}
+          className="text-blue-500 flex flex-row items-center space-x-2 ring-1
+        ring-blue-500 px-2 py-1 text-sm rounded-md hover:bg-blue-50 active:text-white
         transition-all duration-150 cursor-pointer active:bg-blue-500"
-      >
-        Сменить камеру <RefreshIcon className="w-4 h-4" />
-      </p>}
+        >
+          <span className="pointer-events-none ">Сменить камеру</span>
+          <RefreshIcon className="w-4 h-4" />
+        </p>
+      )}
       <div className="object-scale-down max-h-80 overflow-hidden">
         {isActive ? (
           <QrReader
