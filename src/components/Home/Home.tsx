@@ -5,6 +5,7 @@ import { buildRoute } from '../../routes/routes'
 import { ReactComponent as Logo } from '../../assets/logo.svg'
 import Footer from '../Footer/Footer'
 import UserModel from '../../models/user.model'
+import { QrcodeIcon } from '@heroicons/react/outline'
 
 const Home = () => {
   const history = useHistory()
@@ -15,6 +16,7 @@ const Home = () => {
     setUser(JSON.parse(localStorage.getItem('user') || '{}'))
   }, [])
 
+  // @ts-ignore
   return (
     <>
       <div className="grid grid-flow-row space-y-4 pt-10 justify-items-center">
@@ -25,41 +27,41 @@ const Home = () => {
               Удобный сервис для трекинга выполнения плана продаж для Вашего
               бизнеса
             </p>
-            {user.role === 'staff' ? (
+            <Button
+              value="Новости"
+              className="text-blue-500"
+              onClick={() => history.push(buildRoute(['newsfeed']))}
+            />
+            <Button
+              value="Управлять планами"
+              className="text-blue-500"
+              onClick={() => history.push(buildRoute(['manage']))}
+            />
+            <div className={'w-full flex flex-row space-x-2'}>
               <Button
-                value="Сканировать код товара"
-                className="text-blue-500"
+                icon={() => <QrcodeIcon className="w-6 h-6" />}
+                value={'Сканнер'}
+                className="text-blue-500 w-16"
                 onClick={() => history.push(buildRoute(['barcode']))}
               />
-            ) : (
-              <>
-                <Button
-                  value="Управлять планами"
-                  className="text-blue-500"
-                  onClick={() => history.push(buildRoute(['manage']))}
-                />
-                <Button
-                  value="Сканировать код товара"
-                  className="text-blue-500"
-                  onClick={() => history.push(buildRoute(['barcode']))}
-                />
-              </>
-            )}
-            <Button
-              value="Мои привязки"
-              className="text-blue-500"
-              onClick={() => history.push(buildRoute(['bindings']))}
-            />
-            <Button
-              value="Достижения"
-              className="text-blue-500"
-              onClick={() => history.push(buildRoute(['stats']))}
-            />
-            <Button
-              value="Рейтинг"
-              className="text-blue-500"
-              onClick={() => history.push(buildRoute(['leaderboard']))}
-            />
+              <Button
+                value="Мои привязки"
+                className="text-blue-500 flex-grow"
+                onClick={() => history.push(buildRoute(['bindings']))}
+              />
+            </div>
+            <div className="w-full flex flex-row space-x-2">
+              <Button
+                value="Достижения"
+                className="w-full text-blue-500"
+                onClick={() => history.push(buildRoute(['stats']))}
+              />
+              <Button
+                value="Рейтинг"
+                className="w-full text-blue-500"
+                onClick={() => history.push(buildRoute(['leaderboard']))}
+              />
+            </div>
           </>
         ) : (
           <p className="my-2 text-center">Загружаем данные...</p>

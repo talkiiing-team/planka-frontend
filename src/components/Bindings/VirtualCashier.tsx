@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Footer from '../Footer/Footer'
 import backly from '../../services/backly/backly'
-import EntityModel, { parseType } from '../../models/entity.model'
 import BindingModel from '../../models/binding.model'
 import UserModel from '../../models/user.model'
 import { Paginated } from '@feathersjs/feathers'
 import Card from './Card/Card'
 
-const Bindings = () => {
+const VirtualCashier = () => {
   const [selectedBds, selectBds] = useState<BindingModel>()
   const [list, setList] = useState<BindingModel[]>()
   const [filteredList, setFilteredList] = useState<BindingModel[]>()
@@ -19,6 +18,8 @@ const Bindings = () => {
         query: {
           user: user._id,
           active: true,
+          // submitted: false
+          $limit: 100
         },
       })) as Paginated<BindingModel>
       setList(res.data)
@@ -43,7 +44,7 @@ const Bindings = () => {
   return (
     <div className="flex flex-col space-y-4 mx-auto items-center text-center">
       <h1 className="text-center text-4xl mt-10 mb-3 w-full">
-        Ожидания в чеках
+        Подтверждение связок
       </h1>
       <div className="w-full flex flex-col space-y-5">
         {!list ? (
@@ -65,4 +66,4 @@ const Bindings = () => {
   )
 }
 
-export default Bindings
+export default VirtualCashier

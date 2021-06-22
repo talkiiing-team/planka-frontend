@@ -1,24 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import Footer from '../Footer/Footer'
 import backly from '../../services/backly/backly'
-import EntityModel, { parseType } from '../../models/entity.model'
 import BindingModel from '../../models/binding.model'
 import UserModel from '../../models/user.model'
 import { Paginated } from '@feathersjs/feathers'
-import Card from './Card/Card'
 
-const Bindings = () => {
-  const [selectedBds, selectBds] = useState<BindingModel>()
+const Newsfeed = () => {
   const [list, setList] = useState<BindingModel[]>()
-  const [filteredList, setFilteredList] = useState<BindingModel[]>()
 
   const fetchList = async () => {
     const user = JSON.parse(localStorage.getItem('user') || '{}') as UserModel
     try {
-      const res = (await backly.app.service('bindings').find({
+      const res = (await backly.app.service('newsfeed').find({
         query: {
           user: user._id,
-          active: true,
         },
       })) as Paginated<BindingModel>
       setList(res.data)
@@ -28,36 +23,23 @@ const Bindings = () => {
   }
 
   useEffect(() => {
-    console.log(list)
-    if (list) {
-      setFilteredList(list.filter((v) => v.active))
-    } else {
-      setFilteredList([])
-    }
-  }, [list])
-
-  useEffect(() => {
     fetchList()
   }, [])
 
   return (
     <div className="flex flex-col space-y-4 mx-auto items-center text-center">
       <h1 className="text-center text-4xl mt-10 mb-3 w-full">
-        Ожидания в чеках
+        Новости
       </h1>
       <div className="w-full flex flex-col space-y-5">
-        {!list ? (
+        {!list || list.length === 0 ? (
           <div className="w-full text-gray-600 text-xl rounded-md font-light px-3 py-1">
             Загрузка...
           </div>
-        ) : filteredList && filteredList.length > 0 ? (
-          filteredList.map(
-            (v) => v.active && <Card entity={v.entity} active={v.active} />
-          )
         ) : (
-          <div className="w-full text-gray-600 text-xl rounded-md font-light px-3 py-1">
-            К сожалению, ничего...
-          </div>
+          list.map(
+            (v, i) => <div>{i}</div>
+          )
         )}
       </div>
       <Footer options={['settings', 'back']} />
@@ -65,4 +47,4 @@ const Bindings = () => {
   )
 }
 
-export default Bindings
+export default Newsfeed

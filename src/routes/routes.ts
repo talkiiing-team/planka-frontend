@@ -25,6 +25,12 @@ const routes = {
   bindings: {
     default: 'bindings',
   },
+  cashier: {
+    default: 'cashier',
+  },
+  newsfeed: {
+    default: 'newsfeed',
+  },
 
   default: '',
 }

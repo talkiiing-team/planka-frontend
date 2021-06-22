@@ -24,6 +24,8 @@ import {
   StorageKeySettings,
 } from './store/settings/settings'
 import Bindings from './components/Bindings/Bindings'
+import VirtualCashier from './components/Bindings/VirtualCashier'
+import Newsfeed from './components/Newsfeed/Newsfeed'
 
 const App = () => {
   const history = useHistory()
@@ -95,6 +97,12 @@ const App = () => {
                     </Route>
                     <Route path={buildRoute(['bindings'])}>
                       <Bindings />
+                    </Route>
+                    <Route path={buildRoute(['cashier'])}>
+                      <VirtualCashier />
+                    </Route>
+                    <Route path={buildRoute(['newsfeed'])}>
+                      <Newsfeed />
                     </Route>
                     <Route path={buildRoute([])}>
                       <Home />

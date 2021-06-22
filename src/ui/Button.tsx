@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 
 interface IButtonProps {
   value?: string
+  icon?: () => ReactElement
   onClick?: () => any
   className?: string
   disabled?: boolean
@@ -21,7 +22,10 @@ const Button = (props: IButtonProps) => {
     outline-none focus:outline-none transition-all duration-100 z-10`}
       onClick={(e) => props.onClick && props.onClick()}
     >
-      {props.value || ''}
+      <div className="flex flex-row space-x-2">
+        {props.icon && <div>{props.icon()}</div>}
+        {props.value && <div>{props.value || ''}</div>}
+      </div>
     </button>
   )
 }

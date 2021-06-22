@@ -1,5 +1,6 @@
 import { app } from '../feathers/feathers'
 import feathers from '@feathersjs/feathers'
+import UserModel from '../../models/user.model'
 
 export interface BacklyAuth {
   ready: boolean
@@ -16,6 +17,7 @@ export interface BacklyAuth {
   ) => Promise<void>
   reAuth: (res?: CallableFunction, rej?: CallableFunction) => Promise<void>
   logout: () => Promise<boolean>
+  getUser: () => UserModel
 }
 
 class Backly {
@@ -76,6 +78,11 @@ class Backly {
       await app.logout()
       localStorage.removeItem('user')
       return true
+    },
+    getUser: () => {
+      return localStorage.getItem('user')
+        ? JSON.parse(localStorage.getItem('user') || '{}')
+        : {}
     },
   }
   app: feathers.Application
