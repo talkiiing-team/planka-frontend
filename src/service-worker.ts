@@ -20,6 +20,11 @@ console.log(self.__WB_MANIFEST)
 // even if you decide not to use precaching. See https://cra.link/PWA
 precacheAndRoute(self.__WB_MANIFEST)
 
+// Choose a cache name
+const cacheName = 'cache-v1-app'
+// List the files to precache
+const precacheResources = ['/', '/#', '/index.html', '/css/style.css']
+
 // Set up App Shell-style routing, so that all navigation requests
 // are fulfilled with your index.html shell. Learn more at
 // https://developers.google.com/web/fundamentals/architecture/app-shell
@@ -29,12 +34,12 @@ registerRoute(
   ({ request, url }: { request: Request; url: URL }) => {
     // If this isn't a navigation, skip.
     if (request.mode !== 'navigate') {
-      return false
+      return true
     }
 
     // If this is a URL that starts with /_, skip.
-    if (url.pathname.startsWith('/_')) {
-      return false
+    if (url.pathname.startsWith('/#')) {
+      return true
     }
 
     // If this looks like a URL for a resource, because it contains
@@ -74,4 +79,25 @@ self.addEventListener('message', (event) => {
   }
 })
 
+// When the service worker is installing, open the cache and add the precache resources to it
+self.addEventListener('install', (event) => {
+  console.log('Service worker installing!')
+  event.waitUntil(
+    caches.open(cacheName).then((cache) => cache.addAll(precacheResources))
+  )
+})
+
+self.addEventListener('activate', (event) => {
+  console.log('Service worker activated!')
+})
+
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    // @ts-ignore
+    caches
+      .match(event.request)
+      .then((response) => response || fetch(event.request))
+      .catch(() => caches.match('/'))
+  )
+})
 // Any other custom service worker logic can go here.
