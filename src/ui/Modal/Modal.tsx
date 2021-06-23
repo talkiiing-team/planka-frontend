@@ -17,7 +17,7 @@ const Modal = (props: IModalProps) => {
         props.show ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
       >
-        <div className="w-full transform -translate-y-6">
+        <div className="w-full max-w-3xl transform -translate-y-6">
           <div className="w-full h-8 flex flex-row justify-end mb-3">
             <div
               className="w-12 h-8 px-3 py-1 bg-white bg-opacity-20 rounded-lg"
