@@ -72,7 +72,7 @@ const App = () => {
             <CSSTransition
               key={location.pathname}
               classNames={settings.options.animationType || 'none'}
-              timeout={settings.options.animationType === 'none' ? 0 : 610}
+              timeout={settings.options.animationType === 'none' ? 0 : 601}
             >
               <div className="animated-part w-full h-full">
                 <div className="p-6 container relative max-w-3xl">
