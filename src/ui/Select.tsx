@@ -68,7 +68,7 @@ function Select(props: ISelectProps) {
       <div className={`${props.className} relative`}>
         <div
           className={`w-full paper ring-1 ring-gray-100 
-      relative rounded-md flex flex-col focus-within:w-1/2`}
+      relative rounded-md flex flex-col`}
         >
           {props.label && (
             <label

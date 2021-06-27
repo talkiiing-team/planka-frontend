@@ -41,12 +41,12 @@ const Home = () => {
               <Button
                 icon={() => <QrcodeIcon className="w-6 h-6" />}
                 value={'Сканнер'}
-                className="text-blue-500 w-16"
+                className="text-blue-500 transform -translate-y-[13px]"
                 onClick={() => history.push(buildRoute(['barcode']))}
               />
               <Button
                 value="Мои привязки"
-                className="text-blue-500 flex-grow"
+                className="text-blue-500"
                 onClick={() => history.push(buildRoute(['bindings']))}
               />
             </div>

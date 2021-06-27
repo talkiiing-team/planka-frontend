@@ -34,12 +34,12 @@ const Manage = () => {
           <Button
             icon={() => <QuestionMarkCircleIcon className="w-6 h-6" />}
             value={'Помощь'}
-            className="text-blue-500 w-16"
+            className="text-blue-500"
             onClick={() => setModal(true)}
           />
           <Button
             value="Сохранить"
-            className="text-blue-500 flex-grow"
+            className="text-blue-500"
             onClick={() => save()}
           />
         </div>

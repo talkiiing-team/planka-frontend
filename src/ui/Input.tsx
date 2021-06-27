@@ -32,7 +32,7 @@ function Input<T = string>(props: IInputProps<T>) {
   return (
     <div
       className={`${props.className} w-full ring-1 ring-gray-100 
-      relative rounded-md flex flex-col focus-within:w-1/2`}
+      relative rounded-md flex flex-col`}
     >
       <input
         id={props.id || ''}

@@ -22,7 +22,7 @@ const Button = (props: IButtonProps) => {
     outline-none focus:outline-none transition-all duration-100 z-10`}
       onClick={(e) => props.onClick && props.onClick()}
     >
-      <div className="flex flex-row space-x-2">
+      <div className="flex flex-row justify-center space-x-2">
         {props.icon && <div>{props.icon()}</div>}
         {props.value && <div>{props.value || ''}</div>}
       </div>
