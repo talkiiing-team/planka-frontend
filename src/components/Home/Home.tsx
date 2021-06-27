@@ -19,7 +19,7 @@ const Home = () => {
   // @ts-ignore
   return (
     <>
-      <div className="grid grid-flow-row space-y-4 pt-10 justify-items-center">
+      <div className="grid grid-flow-row justify-items-center pt-10 space-y-4">
         <Logo className="mb-2 w-32 select-none" />
         {user ? (
           <>
@@ -41,7 +41,7 @@ const Home = () => {
               <Button
                 icon={() => <QrcodeIcon className="w-6 h-6" />}
                 value={'Сканнер'}
-                className="text-blue-500 transform -translate-y-[13px]"
+                className="text-blue-500 transform"
                 onClick={() => history.push(buildRoute(['barcode']))}
               />
               <Button
@@ -50,7 +50,7 @@ const Home = () => {
                 onClick={() => history.push(buildRoute(['bindings']))}
               />
             </div>
-            <div className="w-full flex flex-row space-x-2">
+            <div className="flex flex-row space-x-2 w-full">
               <Button
                 value="Достижения"
                 className="w-full text-blue-500"

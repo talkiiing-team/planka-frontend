@@ -22,9 +22,9 @@ const Manage = () => {
 
   return (
     <>
-      <div className="grid grid-flow-row gap-y-4 pt-10 justify-items-center">
+      <div className="grid grid-flow-row gap-y-4 justify-items-center pt-10">
         {user && (
-          <h1 className="text-center text-4xl mt-12 mb-3 w-full">
+          <h1 className="mt-12 mb-3 w-full text-4xl text-center">
             Привет, {user.name}
           </h1>
         )}
@@ -47,25 +47,25 @@ const Manage = () => {
       <Footer options={['settings', 'back']} />
 
       <Modal show={showModal} onClose={() => setModal(false)}>
-        <div className="w-full h-76 flex flex-col space-y-2 text-left">
+        <div className="flex flex-col space-y-2 w-full text-left h-76">
           <h2 className="text-center">Помощь</h2>
           <p>
             Для введения формулы просто оберните алиасы на целевые показатели в
             скобки, и сохраните
           </p>
-          <div className="text-left flex flex-col space-y-4">
-            <div className="flex flex-row space-x-4 justify-between">
-              <div className="font-bold w-24">rec</div>
+          <div className="flex flex-col space-y-4 text-left">
+            <div className="flex flex-row justify-between space-x-4">
+              <div className="w-24 font-bold">rec</div>
               <div className="w-1/2 text-justify">количество чеков</div>
             </div>
-            <div className="flex flex-row space-x-4 justify-between">
-              <div className="font-bold w-24">rec_max</div>
+            <div className="flex flex-row justify-between space-x-4">
+              <div className="w-24 font-bold">rec_max</div>
               <div className="w-1/2 text-justify">
                 максимальное кол-во чеков за последний месяц
               </div>
             </div>
-            <div className="flex flex-row space-x-4 justify-between">
-              <div className="font-bold w-24">all_rec_avg</div>
+            <div className="flex flex-row justify-between space-x-4">
+              <div className="w-24 font-bold">all_rec_avg</div>
               <div className="w-1/2 text-justify">
                 среднее количество чеков коллег за день
               </div>
